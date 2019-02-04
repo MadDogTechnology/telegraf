@@ -3,3 +3,15 @@
 /telegraf.exe
 /telegraf.gz
 /vendor
+
+## Directory-based project format:
+.idea/
+
+### osx https://github.com/github/gitignore.git
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+*.iml
+

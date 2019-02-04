@@ -2,6 +2,7 @@ package parsers
 
 import (
 	"fmt"
+	"github.com/influxdata/telegraf/plugins/parsers/rga"
 	"time"
 
 	"github.com/influxdata/telegraf"
@@ -203,6 +204,8 @@ func NewParser(config *Config) (Parser, error) {
 			config.DefaultTags)
 	case "logfmt":
 		parser, err = NewLogFmtParser(config.MetricName, config.DefaultTags)
+	case "rga":
+		parser, err = NewRGAParser(config.DefaultTags)
 	default:
 		err = fmt.Errorf("Invalid data format: %s", config.DataFormat)
 	}
@@ -392,4 +395,8 @@ func NewLogFmtParser(metricName string, defaultTags map[string]string) (Parser, 
 
 func NewWavefrontParser(defaultTags map[string]string) (Parser, error) {
 	return wavefront.NewWavefrontParser(defaultTags), nil
+}
+
+func NewRGAParser(defaultTags map[string]string) (Parser, error) {
+	return rga.NewParser(defaultTags), nil
 }
