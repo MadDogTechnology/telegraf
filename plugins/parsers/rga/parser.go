@@ -10,7 +10,6 @@ import (
 	"github.com/influxdata/telegraf"
 	"github.com/influxdata/telegraf/metric"
 	"io"
-	"math"
 	"strconv"
 	"strings"
 	"time"
@@ -138,50 +137,19 @@ func (p *RGAParser) ParseLine(rbuf string) (telegraf.Metric, error) {
 	}
 	tm := time.Unix(ts/1000, (ts % 1000) * 1000000)
 
-	// The third field contains the type of the value, defined as single characters
-	var v interface{}
-	switch t[2] {
-	case "b":
-		v, err = strconv.ParseBool(t[5])
-		if err != nil {
-			return nil, err
-		}
-	case "n":
-		var f float64
-		f, err = strconv.ParseFloat(t[5], 64)
-		if err != nil {
-			return nil, err
-		}
-		if math.IsNaN(f) || math.IsInf(f, 0) {    // Silently ignore NaN and infinity
-			return nil, nil
-		}
-		v = f
-	case "e":
-		v, err = strconv.ParseInt(t[5], 0, 32)
-		if err != nil {
-			return nil, err
-		}
-	case "t":
-		v, err = strconv.ParseInt(t[5], 0, 64)
-		if err != nil {
-			return nil, err
-		}
-	case "s":
-		v = t[5]
-	default:
-		v = t[5]
-	}
-
+	// Store each metric value exactly as it comes in from the RGA. Will need to deserialize it
+	// when it is retrieved from the ASD
 	tags := make(map[string]string)
-	tags["customer"] = t[0]
-	tags["agent"] = t[1]
+	tags["metric"] = t[3]
+	tags["custid"] = t[0]
 
 	fields := make(map[string]interface{})
-	fields["value"] = v
+	fields["value"] = t[5]
+	fields["type"] = t[2]
 
 	//fmt.Printf("Timestamp: %v\n", tm)
 
-	m, err := metric.New(t[3], tags, fields, tm)
+	m, err := metric.New(t[1], tags, fields, tm)
 	if err != nil {
 		fmt.Printf("error allocation metric: %v\n", err)
 		return nil, err
