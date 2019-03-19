@@ -1621,6 +1621,19 @@ func getParserConfig(name string, tbl *ast.Table) (*parsers.Config, error) {
 		}
 	}
 
+	// For RGA Parser
+	if node, ok := tbl.Fields["rga_agent_ids"]; ok {
+		if kv, ok := node.(*ast.KeyValue); ok {
+			if ary, ok := kv.Value.(*ast.Array); ok {
+				for _, elem := range ary.Value {
+					if str, ok := elem.(*ast.String); ok {
+						c.RGAAgentIds = append(c.RGAAgentIds, str.Value)
+					}
+				}
+			}
+		}
+	}
+
 	c.MetricName = name
 
 	delete(tbl.Fields, "data_format")
@@ -1660,6 +1673,7 @@ func getParserConfig(name string, tbl *ast.Table) (*parsers.Config, error) {
 	delete(tbl.Fields, "csv_timestamp_column")
 	delete(tbl.Fields, "csv_timestamp_format")
 	delete(tbl.Fields, "csv_trim_space")
+	delete(tbl.Fields, "rga_agent_ids")
 
 	return c, nil
 }

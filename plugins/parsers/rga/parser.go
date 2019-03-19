@@ -15,9 +15,10 @@ import (
 	"time"
 )
 
-type RGAParser struct {
-	agentIds    map[string]struct{} // whitelisted agents
-	defaultTags map[string]string   // might need it sometime...
+// Initialized in "registry.go"
+type Parser struct {
+	AgentIds    map[string]struct{} // whitelisted agents
+	DefaultTags map[string]string   // might need it sometime...
 }
 
 type HistrnxMsg struct {
@@ -42,14 +43,7 @@ type HistrnxMsg struct {
 	Body string `json:"body"`
 }
 
-func NewParser(defaultTags map[string]string) *RGAParser {
-
-	wl := make(map[string]struct{})
-	wl["a1ae6ee1-1328-4c24-bb65-2e2a12405140"] = struct{}{} // KTB, for testing
-	return &RGAParser{agentIds: wl, defaultTags: defaultTags}
-}
-
-func (p *RGAParser) Parse(buf []byte) ([]telegraf.Metric, error) {
+func (p *Parser) Parse(buf []byte) ([]telegraf.Metric, error) {
 	metrics := make([]telegraf.Metric, 0)
 
 	// Deserialize the message into header and body
@@ -61,7 +55,7 @@ func (p *RGAParser) Parse(buf []byte) ([]telegraf.Metric, error) {
 	}
 
 	// If the agent ID doesn't match one on the whitelist, ignore the message
-	_, ok := p.agentIds[m.Headers.AgentId]
+	_, ok := p.AgentIds[m.Headers.AgentId]
 	if !ok {
 		//fmt.Println("return on filtered message")
 		return metrics, nil
@@ -120,7 +114,7 @@ func (p *RGAParser) Parse(buf []byte) ([]telegraf.Metric, error) {
 
 // History topic records are bar ("|") separated. To parse, the buffer is split into fields
 // converted into their proper type.
-func (p *RGAParser) ParseLine(rbuf string) (telegraf.Metric, error) {
+func (p *Parser) ParseLine(rbuf string) (telegraf.Metric, error) {
 
 	t := strings.Split(rbuf, "|")
 	if len(t) != 6 {
@@ -158,6 +152,6 @@ func (p *RGAParser) ParseLine(rbuf string) (telegraf.Metric, error) {
 }
 
 // SetDefaultTags set the DefaultTags
-func (p *RGAParser) SetDefaultTags(tags map[string]string) {
-	p.defaultTags = tags
+func (p *Parser) SetDefaultTags(tags map[string]string) {
+	p.DefaultTags = tags
 }

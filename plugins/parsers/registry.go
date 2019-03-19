@@ -138,6 +138,9 @@ type Config struct {
 	CSVTimestampColumn   string   `toml:"csv_timestamp_column"`
 	CSVTimestampFormat   string   `toml:"csv_timestamp_format"`
 	CSVTrimSpace         bool     `toml:"csv_trim_space"`
+
+	//rga configurations
+	RGAAgentIds			[]string	`roml:"rga_agent_ids"`
 }
 
 // NewParser returns a Parser interface based on the given config.
@@ -205,7 +208,7 @@ func NewParser(config *Config) (Parser, error) {
 	case "logfmt":
 		parser, err = NewLogFmtParser(config.MetricName, config.DefaultTags)
 	case "rga":
-		parser, err = NewRGAParser(config.DefaultTags)
+		parser, err = NewRGAParser(config.RGAAgentIds, config.DefaultTags)
 	default:
 		err = fmt.Errorf("Invalid data format: %s", config.DataFormat)
 	}
@@ -397,6 +400,20 @@ func NewWavefrontParser(defaultTags map[string]string) (Parser, error) {
 	return wavefront.NewWavefrontParser(defaultTags), nil
 }
 
-func NewRGAParser(defaultTags map[string]string) (Parser, error) {
-	return rga.NewParser(defaultTags), nil
+func NewRGAParser(agentIds []string, defaultTags map[string]string) (Parser, error) {
+	if len(agentIds) < 1 {
+		return nil, fmt.Errorf("rga_agent_ids must contain at least one agent id")
+	}
+	//convert slice to map to make existence check easier
+	wl := make(map[string]struct{})
+	for _, agentId := range agentIds {
+		wl[agentId] = struct{}{}
+	}
+
+	// All that's required to create the new RGA parser is the parser structure
+	parser := &rga.Parser{
+		AgentIds:   wl,
+		DefaultTags: defaultTags,
+	}
+	return parser, nil
 }
