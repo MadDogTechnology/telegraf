@@ -1,0 +1,61 @@
+buildscript {
+    repositories {
+        maven {
+            url "${artifactory_contextUrl}" + '/repo'
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
+
+        dependencies {
+            classpath 'com.resolutebi:GradleCommonConfigurationPlugin:1.0.+'
+        }
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: "resolute-common-config"
+
+repositories {
+    jcenter()
+}
+
+def thisDockerImage = 'telegraf'
+
+resoluteDocker {
+    artifacts = [
+        thisDockerImage
+    ]
+}
+
+dependencies {
+}
+
+clean.doFirst {
+    println "docker rmi -f \$(docker images ${dockerHost}/${thisDockerImage}:previous -q)"
+    exec { // If your environment was clean it won't delete anything, hence the true to offset the error
+        commandLine "/bin/bash", "-c", "docker rmi -f ${dockerHost}/${thisDockerImage}:previous || true"
+    }
+    println "docker tag ${dockerHost}/${thisDockerImage} ${dockerHost}/${thisDockerImage}:previous"
+    exec {
+        commandLine "/bin/bash", "-c", "docker tag ${dockerHost}/${thisDockerImage} ${dockerHost}/${thisDockerImage}:previous || true"
+    }
+    println "docker rmi -f ${dockerHost}/${thisDockerImage}"
+    exec { // If your environment was clean it won't delete anything, hence the true to offset the error        
+        commandLine "/bin/bash", "-c", "docker rmi -f ${dockerHost}/${thisDockerImage} || true"
+    }
+}
+
+build << {
+    println "docker build -t ${dockerHost}/${thisDockerImage} -f ./docker/Dockerfile ."
+    exec {
+        commandLine "/bin/bash", "-c", "docker build -t ${dockerHost}/${thisDockerImage} -f ./docker/Dockerfile ."
+    }
+    println "docker rmi -f \$(docker images ${dockerHost}/${thisDockerImage}:previous -q)"
+    exec {
+        commandLine "/bin/bash", "-c", "docker rmi -f \$(docker images ${dockerHost}/${thisDockerImage}:previous -q) || true"
+    }
+}
+

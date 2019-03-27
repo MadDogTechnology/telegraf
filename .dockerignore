@@ -1,0 +1,13 @@
+# don't ignore .git, required by go make process
+.project
+.settings
+*.gradle
+gradle
+gradle.properties
+gradlew
+README.md
+build
+bin
+tmp
+temp
+vendor
