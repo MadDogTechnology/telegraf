@@ -14,6 +14,17 @@ RUN set -x \
 
 FROM telegraf:1.9.3-alpine as app
 COPY --from=builder /go/src/github.com/influxdata/telegraf/telegraf /usr/bin/telegraf
+COPY --from=builder /go/src/github.com/influxdata/telegraf/docker/entrypoint.sh /go/src/github.com/influxdata/telegraf/docker/telegraf-template.conf /
+ 
+RUN set -x \
+    && apk --update --no-cache --virtual add \
+       rsyslog \
+       bash \
+       curl \
+       wget \
+       gettext \
+       jq \
+    && rm -rf /var/cache/apk/*
 
 # Inherit from telegraf dockerfile https://github.com/influxdata/influxdata-docker/blob/master/telegraf/1.9/alpine/Dockerfile
 # WORKDIR /
