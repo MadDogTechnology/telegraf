@@ -5,6 +5,7 @@
 # 
 
 FROM tibetanmastiff/telegrafi-build as builder
+LABEL telegraf=builder
 COPY . /go/src/github.com/influxdata/telegraf/
 RUN set -x \
     && cd $GOPATH/src/github.com/influxdata/telegraf \

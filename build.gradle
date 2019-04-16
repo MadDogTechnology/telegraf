@@ -57,5 +57,9 @@ build << {
     exec {
         commandLine "/bin/bash", "-c", "docker rmi -f \$(docker images ${dockerHost}/${thisDockerImage}:previous -q) || true"
     }
+    println 'docker image prune -f --filter label=telegraf=builder'
+    exec {
+        commandLine "/bin/bash", "-c", "docker image prune -f --filter label=telegraf=builder"
+    }
 }
 
