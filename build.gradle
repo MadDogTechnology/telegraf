@@ -9,7 +9,7 @@ buildscript {
         }
 
         dependencies {
-            classpath 'com.resolutebi:GradleCommonConfigurationPlugin:1.0.+'
+            classpath 'com.resolutebi:GradleCommonConfigurationPlugin:1.104.282'
         }
     }
 }
