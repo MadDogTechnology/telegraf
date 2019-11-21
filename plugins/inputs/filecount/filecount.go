@@ -3,7 +3,6 @@ package filecount
 import (
 	"os"
 	"path/filepath"
-	"strings"
 	"time"
 
 	"github.com/influxdata/telegraf"
@@ -11,12 +10,13 @@ import (
 	"github.com/influxdata/telegraf/internal/globpath"
 	"github.com/influxdata/telegraf/plugins/inputs"
 	"github.com/karrick/godirwalk"
+	"github.com/pkg/errors"
 )
 
 const sampleConfig = `
   ## Directory to gather stats about.
   ##   deprecated in 1.9; use the directories option
-  directory = "/var/cache/apt/archives"
+  # directory = "/var/cache/apt/archives"
 
   ## Directories to gather stats about.
   ## This accept standard unit glob matching rules, but with the addition of
@@ -57,6 +57,8 @@ type FileCount struct {
 	MTime       internal.Duration `toml:"mtime"`
 	fileFilters []fileFilterFunc
 	globPaths   []globpath.GlobPath
+	Fs          fileSystem
+	Log         telegraf.Logger
 }
 
 func (_ *FileCount) Description() string {
@@ -152,11 +154,13 @@ func (fc *FileCount) initFileFilters() {
 func (fc *FileCount) count(acc telegraf.Accumulator, basedir string, glob globpath.GlobPath) {
 	childCount := make(map[string]int64)
 	childSize := make(map[string]int64)
+
 	walkFn := func(path string, de *godirwalk.Dirent) error {
-		if path == basedir {
+		rel, err := filepath.Rel(basedir, path)
+		if err == nil && rel == "." {
 			return nil
 		}
-		file, err := os.Stat(path)
+		file, err := fc.Fs.Stat(path)
 		if err != nil {
 			if os.IsNotExist(err) {
 				return nil
@@ -169,7 +173,7 @@ func (fc *FileCount) count(acc telegraf.Accumulator, basedir string, glob globpa
 			return nil
 		}
 		if match {
-			parent := path[:strings.LastIndex(path, "/")]
+			parent := filepath.Dir(path)
 			childCount[parent]++
 			childSize[parent] += file.Size()
 		}
@@ -178,6 +182,7 @@ func (fc *FileCount) count(acc telegraf.Accumulator, basedir string, glob globpa
 		}
 		return nil
 	}
+
 	postChildrenFn := func(path string, de *godirwalk.Dirent) error {
 		if glob.MatchString(path) {
 			gauge := map[string]interface{}{
@@ -189,7 +194,7 @@ func (fc *FileCount) count(acc telegraf.Accumulator, basedir string, glob globpa
 					"directory": path,
 				})
 		}
-		parent := path[:strings.LastIndex(path, "/")]
+		parent := filepath.Dir(path)
 		if fc.Recursive {
 			childCount[parent] += childCount[path]
 			childSize[parent] += childSize[path]
@@ -203,6 +208,13 @@ func (fc *FileCount) count(acc telegraf.Accumulator, basedir string, glob globpa
 		Callback:             walkFn,
 		PostChildrenCallback: postChildrenFn,
 		Unsorted:             true,
+		ErrorCallback: func(osPathname string, err error) godirwalk.ErrorAction {
+			if os.IsPermission(errors.Cause(err)) {
+				fc.Log.Debug(err)
+				return godirwalk.SkipNode
+			}
+			return godirwalk.Halt
+		},
 	})
 	if err != nil {
 		acc.AddError(err)
@@ -233,7 +245,7 @@ func (fc *FileCount) Gather(acc telegraf.Accumulator) error {
 	}
 
 	for _, glob := range fc.globPaths {
-		for _, dir := range onlyDirectories(glob.GetRoots()) {
+		for _, dir := range fc.onlyDirectories(glob.GetRoots()) {
 			fc.count(acc, dir, glob)
 		}
 	}
@@ -241,10 +253,10 @@ func (fc *FileCount) Gather(acc telegraf.Accumulator) error {
 	return nil
 }
 
-func onlyDirectories(directories []string) []string {
+func (fc *FileCount) onlyDirectories(directories []string) []string {
 	out := make([]string, 0)
 	for _, path := range directories {
-		info, err := os.Stat(path)
+		info, err := fc.Fs.Stat(path)
 		if err == nil && info.IsDir() {
 			out = append(out, path)
 		}
@@ -255,11 +267,11 @@ func onlyDirectories(directories []string) []string {
 func (fc *FileCount) getDirs() []string {
 	dirs := make([]string, len(fc.Directories))
 	for i, dir := range fc.Directories {
-		dirs[i] = dir
+		dirs[i] = filepath.Clean(dir)
 	}
 
 	if fc.Directory != "" {
-		dirs = append(dirs, fc.Directory)
+		dirs = append(dirs, filepath.Clean(fc.Directory))
 	}
 
 	return dirs
@@ -275,6 +287,7 @@ func (fc *FileCount) initGlobPaths(acc telegraf.Accumulator) {
 			fc.globPaths = append(fc.globPaths, *glob)
 		}
 	}
+
 }
 
 func NewFileCount() *FileCount {
@@ -287,6 +300,7 @@ func NewFileCount() *FileCount {
 		Size:        internal.Size{Size: 0},
 		MTime:       internal.Duration{Duration: 0},
 		fileFilters: nil,
+		Fs:          osFS{},
 	}
 }
 

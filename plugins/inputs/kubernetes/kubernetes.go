@@ -36,6 +36,8 @@ var sampleConfig = `
   url = "http://127.0.0.1:10255"
 
   ## Use bearer token for authorization. ('bearer_token' takes priority)
+  ## If both of these are empty, we'll use the default serviceaccount:
+  ## at: /run/secrets/kubernetes.io/serviceaccount/token
   # bearer_token = "/path/to/bearer/token"
   ## OR
   # bearer_token_string = "abc_123"
@@ -52,7 +54,8 @@ var sampleConfig = `
 `
 
 const (
-	summaryEndpoint = `%s/stats/summary`
+	summaryEndpoint           = `%s/stats/summary`
+	defaultServiceAccountPath = "/run/secrets/kubernetes.io/serviceaccount/token"
 )
 
 func init() {
@@ -69,6 +72,23 @@ func (k *Kubernetes) SampleConfig() string {
 //Description returns the description of this plugin
 func (k *Kubernetes) Description() string {
 	return "Read metrics from the kubernetes kubelet api"
+}
+
+func (k *Kubernetes) Init() error {
+	// If neither are provided, use the default service account.
+	if k.BearerToken == "" && k.BearerTokenString == "" {
+		k.BearerToken = defaultServiceAccountPath
+	}
+
+	if k.BearerToken != "" {
+		token, err := ioutil.ReadFile(k.BearerToken)
+		if err != nil {
+			return err
+		}
+		k.BearerTokenString = strings.TrimSpace(string(token))
+	}
+
+	return nil
 }
 
 //Gather collects kubernetes metrics from a given URL
@@ -108,15 +128,7 @@ func (k *Kubernetes) gatherSummary(baseURL string, acc telegraf.Accumulator) err
 		}
 	}
 
-	if k.BearerToken != "" {
-		token, err := ioutil.ReadFile(k.BearerToken)
-		if err != nil {
-			return err
-		}
-		req.Header.Set("Authorization", "Bearer "+strings.TrimSpace(string(token)))
-	} else if k.BearerTokenString != "" {
-		req.Header.Set("Authorization", "Bearer "+k.BearerTokenString)
-	}
+	req.Header.Set("Authorization", "Bearer "+k.BearerTokenString)
 	req.Header.Add("Accept", "application/json")
 
 	resp, err = k.RoundTripper.RoundTrip(req)
@@ -156,7 +168,7 @@ func buildSystemContainerMetrics(summaryMetrics *SummaryMetrics, acc telegraf.Ac
 		fields["memory_major_page_faults"] = container.Memory.MajorPageFaults
 		fields["rootfs_available_bytes"] = container.RootFS.AvailableBytes
 		fields["rootfs_capacity_bytes"] = container.RootFS.CapacityBytes
-		fields["logsfs_avaialble_bytes"] = container.LogsFS.AvailableBytes
+		fields["logsfs_available_bytes"] = container.LogsFS.AvailableBytes
 		fields["logsfs_capacity_bytes"] = container.LogsFS.CapacityBytes
 		acc.AddFields("kubernetes_system_container", fields, tags)
 	}
@@ -208,7 +220,7 @@ func buildPodMetrics(summaryMetrics *SummaryMetrics, acc telegraf.Accumulator) {
 			fields["rootfs_available_bytes"] = container.RootFS.AvailableBytes
 			fields["rootfs_capacity_bytes"] = container.RootFS.CapacityBytes
 			fields["rootfs_used_bytes"] = container.RootFS.UsedBytes
-			fields["logsfs_avaialble_bytes"] = container.LogsFS.AvailableBytes
+			fields["logsfs_available_bytes"] = container.LogsFS.AvailableBytes
 			fields["logsfs_capacity_bytes"] = container.LogsFS.CapacityBytes
 			fields["logsfs_used_bytes"] = container.LogsFS.UsedBytes
 			acc.AddFields("kubernetes_pod_container", fields, tags)
