@@ -3,7 +3,7 @@ package carbon2
 import (
 	"bytes"
 	"fmt"
-	"github.com/influxdata/telegraf"
+	"github.com/MadDogTechnology/telegraf"
 	"strconv"
 	"strings"
 )

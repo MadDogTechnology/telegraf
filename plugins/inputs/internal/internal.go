@@ -3,9 +3,9 @@ package internal
 import (
 	"runtime"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/inputs"
-	"github.com/influxdata/telegraf/selfstat"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf/selfstat"
 )
 
 type Self struct {

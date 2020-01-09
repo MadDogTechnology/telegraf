@@ -82,7 +82,7 @@ you will find the https://grokdebug.herokuapp.com application quite useful!
   ## The dataformat to be read from files
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "grok"
 
   ## This is a list of patterns to check the given log file(s) for.

@@ -15,7 +15,7 @@ ignored unless specified in the `tag_key` or `json_string_fields` options.
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "json"
 
   ## Query is a GJSON path that specifies a specific chunk of JSON to be

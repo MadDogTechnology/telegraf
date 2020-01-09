@@ -4,7 +4,7 @@ The Socket Listener is a service input plugin that listens for messages from
 streaming (tcp, unix) or datagram (udp, unixgram) protocols.
 
 The plugin expects messages in the
-[Telegraf Input Data Formats](https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md).
+[Telegraf Input Data Formats](https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md).
 
 ### Configuration:
 
@@ -57,7 +57,7 @@ This is a sample configuration for the plugin.
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   # data_format = "influx"
 ```
 

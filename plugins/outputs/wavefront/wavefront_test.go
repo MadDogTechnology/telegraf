@@ -1,9 +1,9 @@
 package wavefront
 
 import (
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/metric"
-	"github.com/influxdata/telegraf/testutil"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/metric"
+	"github.com/MadDogTechnology/telegraf/testutil"
 	"reflect"
 	"strings"
 	"testing"

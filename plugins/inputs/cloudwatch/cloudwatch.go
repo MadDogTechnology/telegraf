@@ -10,11 +10,11 @@ import (
 
 	"github.com/aws/aws-sdk-go/service/cloudwatch"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal"
-	internalaws "github.com/influxdata/telegraf/internal/config/aws"
-	"github.com/influxdata/telegraf/internal/limiter"
-	"github.com/influxdata/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal"
+	internalaws "github.com/MadDogTechnology/telegraf/internal/config/aws"
+	"github.com/MadDogTechnology/telegraf/internal/limiter"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
 )
 
 type (

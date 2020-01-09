@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/influxdata/telegraf/testutil"
+	"github.com/MadDogTechnology/telegraf/testutil"
 )
 
 func TestGatherQueuesMetrics(t *testing.T) {

@@ -6,16 +6,16 @@
 
 FROM tibetanmastiff/telegrafi-build as builder
 LABEL telegraf=builder
-COPY . /go/src/github.com/influxdata/telegraf/
+COPY . /go/src/github.com/MadDogTechnology/telegraf/
 RUN set -x \
-    && cd $GOPATH/src/github.com/influxdata/telegraf \
+    && cd $GOPATH/src/github.com/MadDogTechnology/telegraf \
     && make \
     && rm -rf /var/lib/apt/lists/*
 
 
 FROM telegraf:1.9.3-alpine as app
-COPY --from=builder /go/src/github.com/influxdata/telegraf/telegraf /usr/bin/telegraf
-COPY --from=builder /go/src/github.com/influxdata/telegraf/docker/entrypoint.sh /go/src/github.com/influxdata/telegraf/docker/telegraf-template.conf /
+COPY --from=builder /go/src/github.com/MadDogTechnology/telegraf/telegraf /usr/bin/telegraf
+COPY --from=builder /go/src/github.com/MadDogTechnology/telegraf/docker/entrypoint.sh /go/src/github.com/MadDogTechnology/telegraf/docker/telegraf-template.conf /
  
 RUN set -x \
     && apk --update --no-cache --virtual add \

@@ -3,8 +3,8 @@ package teamspeak
 import (
 	"github.com/multiplay/go-ts3"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
 	"strconv"
 )
 

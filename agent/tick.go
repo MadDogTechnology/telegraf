@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/influxdata/telegraf/internal"
+	"github.com/MadDogTechnology/telegraf/internal"
 )
 
 type Ticker struct {

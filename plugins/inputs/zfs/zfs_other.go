@@ -3,8 +3,8 @@
 package zfs
 
 import (
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
 )
 
 func (z *Zfs) Gather(acc telegraf.Accumulator) error {

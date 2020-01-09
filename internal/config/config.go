@@ -18,15 +18,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal"
-	"github.com/influxdata/telegraf/internal/models"
-	"github.com/influxdata/telegraf/plugins/aggregators"
-	"github.com/influxdata/telegraf/plugins/inputs"
-	"github.com/influxdata/telegraf/plugins/outputs"
-	"github.com/influxdata/telegraf/plugins/parsers"
-	"github.com/influxdata/telegraf/plugins/processors"
-	"github.com/influxdata/telegraf/plugins/serializers"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal"
+	"github.com/MadDogTechnology/telegraf/internal/models"
+	"github.com/MadDogTechnology/telegraf/plugins/aggregators"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf/plugins/outputs"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers"
+	"github.com/MadDogTechnology/telegraf/plugins/processors"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers"
 	"github.com/influxdata/toml"
 	"github.com/influxdata/toml/ast"
 )
@@ -733,7 +733,7 @@ func (c *Config) LoadConfig(path string) error {
 
 // trimBOM trims the Byte-Order-Marks from the beginning of the file.
 // this is for Windows compatibility only.
-// see https://github.com/influxdata/telegraf/issues/1378
+// see https://github.com/MadDogTechnology/telegraf/issues/1378
 func trimBOM(f []byte) []byte {
 	return bytes.TrimPrefix(f, []byte("\xef\xbb\xbf"))
 }

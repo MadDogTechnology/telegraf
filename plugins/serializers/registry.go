@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/influxdata/telegraf"
+	"github.com/MadDogTechnology/telegraf"
 
-	"github.com/influxdata/telegraf/plugins/serializers/carbon2"
-	"github.com/influxdata/telegraf/plugins/serializers/graphite"
-	"github.com/influxdata/telegraf/plugins/serializers/influx"
-	"github.com/influxdata/telegraf/plugins/serializers/json"
-	"github.com/influxdata/telegraf/plugins/serializers/nowmetric"
-	"github.com/influxdata/telegraf/plugins/serializers/splunkmetric"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers/carbon2"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers/graphite"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers/influx"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers/json"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers/nowmetric"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers/splunkmetric"
 )
 
 // SerializerOutput is an interface for output plugins that are able to

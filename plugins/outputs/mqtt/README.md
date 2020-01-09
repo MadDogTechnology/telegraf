@@ -56,4 +56,4 @@ This plugin writes to a [MQTT Broker](http://http://mqtt.org/) acting as a mqtt 
 * `tls_cert`: TLS CERT
 * `tls_key`: TLS key
 * `insecure_skip_verify`: Use TLS but skip chain & host verification (default: false)
-* `data_format`: [About Telegraf data formats](https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md)
+* `data_format`: [About Telegraf data formats](https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md)

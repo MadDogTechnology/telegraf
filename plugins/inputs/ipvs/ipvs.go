@@ -11,8 +11,8 @@ import (
 	"syscall"
 
 	"github.com/docker/libnetwork/ipvs"
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
 )
 
 // IPVS holds the state for this input plugin

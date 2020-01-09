@@ -13,7 +13,7 @@ The `logfmt` data format parses data in [logfmt] format.
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ##   https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ##   https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "logfmt"
 
   ## Set the name of the created metric, if unset the name of the plugin will

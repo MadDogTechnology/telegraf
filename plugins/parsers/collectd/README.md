@@ -26,7 +26,7 @@ You can also change the path to the typesdb or add additional typesdb using
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ##   https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ##   https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "collectd"
 
   ## Authentication file for cryptographic security levels

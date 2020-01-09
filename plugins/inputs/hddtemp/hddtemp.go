@@ -1,9 +1,9 @@
 package hddtemp
 
 import (
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/inputs"
-	gohddtemp "github.com/influxdata/telegraf/plugins/inputs/hddtemp/go-hddtemp"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
+	gohddtemp "github.com/MadDogTechnology/telegraf/plugins/inputs/hddtemp/go-hddtemp"
 )
 
 const defaultAddress = "127.0.0.1:7634"

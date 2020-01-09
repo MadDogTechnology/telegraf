@@ -51,7 +51,7 @@ To send this data to a ServiceNow MID Server with Web Server extension activated
   ## Data format to output.
   ## Each data format has it's own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
   data_format = "nowmetric"
   
   ## Additional HTTP headers
@@ -78,6 +78,6 @@ In this case, just add the following section to your telegraf config file
   ## Data format to output.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
   data_format = "nowmetric"
 ```

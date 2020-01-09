@@ -13,10 +13,10 @@ import (
 
 	"io"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal"
-	"github.com/influxdata/telegraf/internal/tls"
-	"github.com/influxdata/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal"
+	"github.com/MadDogTechnology/telegraf/internal/tls"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
 )
 
 type Tengine struct {

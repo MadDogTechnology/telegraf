@@ -14,7 +14,7 @@ and submit new inputs.
 - Input Plugins should call `inputs.Add` in their `init` function to register
   themselves.  See below for a quick example.
 - Input Plugins must be added to the
-  `github.com/influxdata/telegraf/plugins/inputs/all/all.go` file.
+  `github.com/MadDogTechnology/telegraf/plugins/inputs/all/all.go` file.
 - The `SampleConfig` function should return valid toml that describes how the
   plugin can be configured. This is included in `telegraf config`.  Please
   consult the [SampleConfig][] page for the latest style
@@ -33,8 +33,8 @@ package simple
 // simple.go
 
 import (
-    "github.com/influxdata/telegraf"
-    "github.com/influxdata/telegraf/plugins/inputs"
+    "github.com/MadDogTechnology/telegraf"
+    "github.com/MadDogTechnology/telegraf/plugins/inputs"
 )
 
 type Simple struct {
@@ -101,7 +101,7 @@ Add the following to the `SampleConfig()`:
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "influx"
 ```
 
@@ -133,13 +133,13 @@ about the final delivery status of the metric group.
 
 Check the [amqp_consumer][] for an example implementation.
 
-[exec]: https://github.com/influxdata/telegraf/tree/master/plugins/inputs/exec
-[amqp_consumer]: https://github.com/influxdata/telegraf/tree/master/plugins/inputs/amqp_consumer
+[exec]: https://github.com/MadDogTechnology/telegraf/tree/master/plugins/inputs/exec
+[amqp_consumer]: https://github.com/MadDogTechnology/telegraf/tree/master/plugins/inputs/amqp_consumer
 [prom metric types]: https://prometheus.io/docs/concepts/metric_types/
-[input data formats]: https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
-[SampleConfig]: https://github.com/influxdata/telegraf/wiki/SampleConfig
-[CodeStyle]: https://github.com/influxdata/telegraf/wiki/CodeStyle
-[telegraf.Input]: https://godoc.org/github.com/influxdata/telegraf#Input
-[telegraf.ServiceInput]: https://godoc.org/github.com/influxdata/telegraf#ServiceInput
-[telegraf.Accumulator]: https://godoc.org/github.com/influxdata/telegraf#Accumulator
-[telegraf.TrackingAccumulator]: https://godoc.org/github.com/influxdata/telegraf#Accumulator
+[input data formats]: https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+[SampleConfig]: https://github.com/MadDogTechnology/telegraf/wiki/SampleConfig
+[CodeStyle]: https://github.com/MadDogTechnology/telegraf/wiki/CodeStyle
+[telegraf.Input]: https://godoc.org/github.com/MadDogTechnology/telegraf#Input
+[telegraf.ServiceInput]: https://godoc.org/github.com/MadDogTechnology/telegraf#ServiceInput
+[telegraf.Accumulator]: https://godoc.org/github.com/MadDogTechnology/telegraf#Accumulator
+[telegraf.TrackingAccumulator]: https://godoc.org/github.com/MadDogTechnology/telegraf#Accumulator

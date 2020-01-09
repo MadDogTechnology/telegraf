@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"cloud.google.com/go/pubsub"
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal"
-	"github.com/influxdata/telegraf/plugins/parsers"
-	"github.com/influxdata/telegraf/plugins/serializers"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers"
+	"github.com/MadDogTechnology/telegraf/plugins/serializers"
 	"google.golang.org/api/support/bundler"
 )
 

@@ -13,9 +13,9 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/influxdata/telegraf/internal"
-	itls "github.com/influxdata/telegraf/internal/tls"
-	"github.com/influxdata/telegraf/testutil"
+	"github.com/MadDogTechnology/telegraf/internal"
+	itls "github.com/MadDogTechnology/telegraf/internal/tls"
+	"github.com/MadDogTechnology/telegraf/testutil"
 	"github.com/influxdata/toml"
 	"github.com/stretchr/testify/require"
 	"github.com/vmware/govmomi/object"

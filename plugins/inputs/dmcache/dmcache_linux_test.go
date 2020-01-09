@@ -6,7 +6,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/influxdata/telegraf/testutil"
+	"github.com/MadDogTechnology/telegraf/testutil"
 	"github.com/stretchr/testify/require"
 )
 

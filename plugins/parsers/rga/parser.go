@@ -7,8 +7,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/metric"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/metric"
 	"io"
 	"strconv"
 	"strings"
@@ -135,7 +135,7 @@ func (p *Parser) ParseLine(rbuf string) (telegraf.Metric, error) {
 	// when it is retrieved from the ASD
 	tags := make(map[string]string)
 	tags["metric"] = t[3]
-	tags["custid"] = t[0]
+	tags["agentId"] = t[1]
 
 	fields := make(map[string]interface{})
 	fields["value"] = t[5]
@@ -143,7 +143,7 @@ func (p *Parser) ParseLine(rbuf string) (telegraf.Metric, error) {
 
 	//fmt.Printf("Timestamp: %v\n", tm)
 
-	m, err := metric.New(t[1], tags, fields, tm)
+	m, err := metric.New(t[0], tags, fields, tm)
 	if err != nil {
 		fmt.Printf("error allocation metric: %v\n", err)
 		return nil, err

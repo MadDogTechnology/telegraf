@@ -9,10 +9,10 @@ import (
 
 	"github.com/influxdata/tail"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal/globpath"
-	"github.com/influxdata/telegraf/plugins/inputs"
-	"github.com/influxdata/telegraf/plugins/parsers"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal/globpath"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers"
 	// Parsers
 )
 

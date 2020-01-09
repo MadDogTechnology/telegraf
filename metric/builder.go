@@ -3,7 +3,7 @@ package metric
 import (
 	"time"
 
-	"github.com/influxdata/telegraf"
+	"github.com/MadDogTechnology/telegraf"
 )
 
 type TimeFunc func() time.Time

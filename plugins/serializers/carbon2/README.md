@@ -12,7 +12,7 @@ The `carbon2` serializer translates the Telegraf metric format to the [Carbon2 f
   ## Data format to output.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
   data_format = "carbon2"
 ```
 

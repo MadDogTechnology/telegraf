@@ -3,12 +3,12 @@ package agent
 import (
 	"testing"
 
-	"github.com/influxdata/telegraf/internal/config"
+	"github.com/MadDogTechnology/telegraf/internal/config"
 
 	// needing to load the plugins
-	_ "github.com/influxdata/telegraf/plugins/inputs/all"
+	_ "github.com/MadDogTechnology/telegraf/plugins/inputs/all"
 	// needing to load the outputs
-	_ "github.com/influxdata/telegraf/plugins/outputs/all"
+	_ "github.com/MadDogTechnology/telegraf/plugins/outputs/all"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -57,7 +57,7 @@ to manage the HEC authorization, here's a sample config for an HTTP output:
    ## Data format to output.
    ## Each data format has it's own unique set of configuration options, read
    ## more about them here:
-   ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+   ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
    data_format = "splunkmetric"
     ## Provides time, index, source overrides for the HEC
    splunkmetric_hec_routing = true
@@ -77,7 +77,7 @@ The following aspects of the token can be overriden with tags:
 * index
 * source
 
-You can either use `[global_tags]` or using a more advanced configuration as documented [here](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md).
+You can either use `[global_tags]` or using a more advanced configuration as documented [here](https://github.com/MadDogTechnology/telegraf/blob/master/docs/CONFIGURATION.md).
 
 Such as this example which overrides the index just on the cpu metric:
 ```toml
@@ -132,7 +132,7 @@ An example configuration of a file based output is:
    ## Data format to output.
    ## Each data format has its own unique set of configuration options, read
    ## more about them here:
-   ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+   ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
    data_format = "splunkmetric"
    hec_routing = false
 ```

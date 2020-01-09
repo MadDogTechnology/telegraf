@@ -10,10 +10,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal/tls"
-	"github.com/influxdata/telegraf/plugins/inputs"
-	"github.com/influxdata/telegraf/plugins/parsers"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal/tls"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers"
 	"github.com/streadway/amqp"
 )
 
@@ -150,7 +150,7 @@ func (a *AMQPConsumer) SampleConfig() string {
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "influx"
 `
 }

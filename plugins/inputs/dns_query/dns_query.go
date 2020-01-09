@@ -10,8 +10,8 @@ import (
 
 	"github.com/miekg/dns"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
 )
 
 type ResultType uint64

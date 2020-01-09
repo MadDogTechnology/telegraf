@@ -14,13 +14,13 @@ or `http` outputs as the base config.
   files = ["stdout"]
 
   ## Describe variables using the standard SampleConfig style.
-  ##   https://github.com/influxdata/telegraf/wiki/SampleConfig
+  ##   https://github.com/MadDogTechnology/telegraf/wiki/SampleConfig
   example_option = "example_value"
 
   ## Data format to output.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ##   https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ##   https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "example"
 ```
 

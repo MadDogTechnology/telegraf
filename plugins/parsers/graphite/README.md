@@ -19,7 +19,7 @@ By default, the separator is left as `.`, but this can be changed using the
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "graphite"
 
   ## This string will be used to join the matched values.

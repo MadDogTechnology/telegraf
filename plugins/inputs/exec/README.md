@@ -1,7 +1,7 @@
 # Exec Input Plugin
 
 The `exec` plugin executes the `commands` on every interval and parses metrics from
-their output in any one of the accepted [Input Data Formats](https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md).
+their output in any one of the accepted [Input Data Formats](https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md).
 
 This plugin can be used to poll for custom metrics from any source.
 
@@ -25,7 +25,7 @@ This plugin can be used to poll for custom metrics from any source.
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "influx"
 ```
 

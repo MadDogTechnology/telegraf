@@ -10,7 +10,7 @@ similar constructs.
 - Outputs should call `outputs.Add` in their `init` function to register
   themselves.  See below for a quick example.
 - To be available within Telegraf itself, plugins must add themselves to the
-  `github.com/influxdata/telegraf/plugins/outputs/all/all.go` file.
+  `github.com/MadDogTechnology/telegraf/plugins/outputs/all/all.go` file.
 - The `SampleConfig` function should return valid toml that describes how the
   plugin can be configured. This is included in `telegraf config`.  Please
   consult the [SampleConfig][] page for the latest style guidelines.
@@ -25,8 +25,8 @@ package simpleoutput
 // simpleoutput.go
 
 import (
-    "github.com/influxdata/telegraf"
-    "github.com/influxdata/telegraf/plugins/outputs"
+    "github.com/MadDogTechnology/telegraf"
+    "github.com/MadDogTechnology/telegraf/plugins/outputs"
 )
 
 type Simple struct {
@@ -86,12 +86,12 @@ You should also add the following to your `SampleConfig()`:
   ## Data format to output.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
   data_format = "influx"
 ```
 
-[file]: https://github.com/influxdata/telegraf/tree/master/plugins/inputs/file
-[output data formats]: https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
-[SampleConfig]: https://github.com/influxdata/telegraf/wiki/SampleConfig
-[CodeStyle]: https://github.com/influxdata/telegraf/wiki/CodeStyle
-[telegraf.Output]: https://godoc.org/github.com/influxdata/telegraf#Output
+[file]: https://github.com/MadDogTechnology/telegraf/tree/master/plugins/inputs/file
+[output data formats]: https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+[SampleConfig]: https://github.com/MadDogTechnology/telegraf/wiki/SampleConfig
+[CodeStyle]: https://github.com/MadDogTechnology/telegraf/wiki/CodeStyle
+[telegraf.Output]: https://godoc.org/github.com/MadDogTechnology/telegraf#Output

@@ -2,21 +2,21 @@ package parsers
 
 import (
 	"fmt"
-	"github.com/influxdata/telegraf/plugins/parsers/rga"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/rga"
 	"time"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/plugins/parsers/collectd"
-	"github.com/influxdata/telegraf/plugins/parsers/csv"
-	"github.com/influxdata/telegraf/plugins/parsers/dropwizard"
-	"github.com/influxdata/telegraf/plugins/parsers/graphite"
-	"github.com/influxdata/telegraf/plugins/parsers/grok"
-	"github.com/influxdata/telegraf/plugins/parsers/influx"
-	"github.com/influxdata/telegraf/plugins/parsers/json"
-	"github.com/influxdata/telegraf/plugins/parsers/logfmt"
-	"github.com/influxdata/telegraf/plugins/parsers/nagios"
-	"github.com/influxdata/telegraf/plugins/parsers/value"
-	"github.com/influxdata/telegraf/plugins/parsers/wavefront"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/collectd"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/csv"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/dropwizard"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/graphite"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/grok"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/influx"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/json"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/logfmt"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/nagios"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/value"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/wavefront"
 )
 
 type ParserFunc func() (Parser, error)

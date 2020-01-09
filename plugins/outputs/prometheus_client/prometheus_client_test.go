@@ -4,11 +4,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal"
-	"github.com/influxdata/telegraf/metric"
-	prometheus_input "github.com/influxdata/telegraf/plugins/inputs/prometheus"
-	"github.com/influxdata/telegraf/testutil"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal"
+	"github.com/MadDogTechnology/telegraf/metric"
+	prometheus_input "github.com/MadDogTechnology/telegraf/plugins/inputs/prometheus"
+	"github.com/MadDogTechnology/telegraf/testutil"
 	"github.com/stretchr/testify/require"
 )
 

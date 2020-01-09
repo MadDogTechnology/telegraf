@@ -4,7 +4,7 @@ This plugin provides a consumer for use with AMQP 0-9-1, a promenent implementat
 
 Metrics are read from a topic exchange using the configured queue and binding_key.
 
-Message payload should be formatted in one of the [Telegraf Data Formats](https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md).
+Message payload should be formatted in one of the [Telegraf Data Formats](https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md).
 
 For an introduction to AMQP see:
 - https://www.rabbitmq.com/tutorials/amqp-concepts.html
@@ -80,6 +80,6 @@ The following defaults are known to work with RabbitMQ:
   ## Data format to consume.
   ## Each data format has its own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_INPUT.md
   data_format = "influx"
 ```

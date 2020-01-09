@@ -10,7 +10,7 @@ supported by input plugins and aggregators:
 
 All metrics passing through this processor will be modified accordingly.
 Select the metrics to modify using the standard
-[measurement filtering](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering)
+[measurement filtering](https://github.com/MadDogTechnology/telegraf/blob/master/docs/CONFIGURATION.md#measurement-filtering)
 options.
 
 Values of *name_override*, *name_prefix*, *name_suffix* and already present

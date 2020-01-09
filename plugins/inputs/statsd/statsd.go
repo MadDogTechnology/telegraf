@@ -13,12 +13,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/influxdata/telegraf/plugins/parsers/graphite"
+	"github.com/MadDogTechnology/telegraf/plugins/parsers/graphite"
 
-	"github.com/influxdata/telegraf"
-	"github.com/influxdata/telegraf/internal"
-	"github.com/influxdata/telegraf/plugins/inputs"
-	"github.com/influxdata/telegraf/selfstat"
+	"github.com/MadDogTechnology/telegraf"
+	"github.com/MadDogTechnology/telegraf/internal"
+	"github.com/MadDogTechnology/telegraf/plugins/inputs"
+	"github.com/MadDogTechnology/telegraf/selfstat"
 )
 
 const (
@@ -73,7 +73,7 @@ type Statsd struct {
 	// UDPPacketSize is deprecated, it's only here for legacy support
 	// we now always create 1 max size buffer and then copy only what we need
 	// into the in channel
-	// see https://github.com/influxdata/telegraf/pull/992
+	// see https://github.com/MadDogTechnology/telegraf/pull/992
 	UDPPacketSize int `toml:"udp_packet_size"`
 
 	ReadBufferSize int `toml:"read_buffer_size"`
@@ -216,7 +216,7 @@ const sampleConfig = `
   parse_data_dog_tags = false
 
   ## Statsd data translation templates, more info can be read here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/TEMPLATE_PATTERN.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/TEMPLATE_PATTERN.md
   # templates = [
   #     "cpu.* measurement*"
   # ]

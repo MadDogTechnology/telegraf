@@ -37,7 +37,7 @@ data formats.  For data_formats that support batching, metrics are sent in batch
   ## Data format to output.
   ## Each data format has it's own unique set of configuration options, read
   ## more about them here:
-  ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
+  ## https://github.com/MadDogTechnology/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md
   # data_format = "influx"
 
   ## Additional HTTP headers

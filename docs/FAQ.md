@@ -43,4 +43,4 @@ GODEBUG=netdns=cgo
 ### Q: When will the next version be released?
 
 The latest release date estimate can be viewed on the
-[milestones](https://github.com/influxdata/telegraf/milestones) page.
+[milestones](https://github.com/MadDogTechnology/telegraf/milestones) page.
